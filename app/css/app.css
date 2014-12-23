@@ -11,3 +11,36 @@ body {
 	border: 1px solid #BBB;
 	background-color: #FFF;
 }
+
+header h1 small:before  {
+	content: "|";
+	margin: 0 0.5em;
+	font-size: 1.6em;
+}
+
+article header{
+	padding: 0;
+	overflow: hidden;
+}
+
+article footer {
+	background: none;
+}
+
+article {
+	padding-bottom: 2em;
+	border-bottom: 1px solid #ccc;
+}
+
+.date {
+	float: right;
+}
+
+summary {
+	font-weight: 700;
+	line-height: 1.5;
+}
+
+footer {
+	background: #ccc;
+}
