@@ -10,5 +10,6 @@ directives.directive 'inkcarousel', ->
 		scope.incCarAttrDesc = attrs['attrDesc']		
 		carouselId = element.attr 'id'
 		jQuery(element).after('<nav id="ink-pager-' + carouselId + '" class="ink-navigation"><ul class="pagination black"></ul></nav>')
-		Ink.requireModules ['Ink.UI.Carousel_1'], (InkCarousel)-> 
-    	new InkCarousel('#'+carouselId, {pagination: '#ink-pager-' + carouselId})
+		scope.$watch attrs['elements'], (newval, oldval)->
+			if newval.length
+				Ink.requireModules ['Ink.UI.Carousel_1'], (InkCarousel)-> new InkCarousel('#'+carouselId, {pagination: '#ink-pager-' + carouselId})
