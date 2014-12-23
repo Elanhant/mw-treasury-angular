@@ -8,5 +8,6 @@
         "img/plugins/redesigned-vivec-3.jpg"
     ], 
     "name": "Redesigned Vivec", 
-    "version": "2.0"
+    "version": "2.0",
+    "category": "gameplay"
 }

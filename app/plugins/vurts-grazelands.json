@@ -7,5 +7,6 @@
         "img/plugins/vurts-grazelands-2.jpg"
     ], 
     "name": "Vurt's Grazelands", 
-    "version": "1.0"
+    "version": "1.0",
+    "category": "graphics"
 }
