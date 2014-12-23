@@ -1,0 +1,13 @@
+body {
+	background: #ededed;
+}
+
+.panel {
+	border-radius: 2px;
+	-webkit-box-shadow: #dddddd 0 1px 1px 0;
+	-moz-box-shadow: #dddddd 0 1px 1px 0;
+	box-shadow: #dddddd 0 1px 1px 0;
+	padding: 1em;
+	border: 1px solid #BBB;
+	background-color: #FFF;
+}
