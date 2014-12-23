@@ -5,10 +5,12 @@ module.exports = (grunt)->
 		coffee: 
 			compile:
 				expand: true
-				cwd: 'app/coffee'
-				src: ['**/*.coffee']
-				dest: 'app/js'
-				ext: '.js'
+				files: 
+					'app/js/app.js': 'app/coffee/app.coffee'
+					'app/js/controllers.js': ['app/coffee/controllers/*.coffee']
+					'app/js/directives.js': ['app/coffee/directives/*.coffee']
+					'app/js/services.js': ['app/coffee/services/*.coffee']
+					'app/js/filters.js': ['app/coffee/filters/*.coffee']
 				options:
 					bare: true
 					preserve_dirs: true
