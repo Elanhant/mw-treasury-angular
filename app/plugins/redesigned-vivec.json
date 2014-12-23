@@ -1,0 +1,12 @@
+{
+    "author": "Pirate Lord",
+    "description": "This mod changes all the Cantons from the naff looking Pyramids to open plan mini-towns.",
+    "id": "redesigned-vivec", 
+    "images": [
+        "img/plugins/redesigned-vivec-1.jpg", 
+        "img/plugins/redesigned-vivec-2.jpg",
+        "img/plugins/redesigned-vivec-3.jpg"
+    ], 
+    "name": "Redesigned Vivec", 
+    "version": "2.0"
+}

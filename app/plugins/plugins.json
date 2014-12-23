@@ -4,5 +4,23 @@
 		"imageUrl": "img/plugins/ashlander-tent-1.jpg",
 		"name": "Ashlander Tent",
 		"description": "Brings a portable Ashlander tent to the world of Morrowind"
+	},
+	{
+		"id": "redesigned-vivec",
+		"imageUrl": "img/plugins/redesigned-vivec-1.jpg",
+		"name": "Redesigned Vivec",
+		"description": "This mod changes all the Cantons from the naff looking Pyramids to open plan mini-towns."
+	},
+	{
+		"id": "mountainous-red-mountain",
+		"imageUrl": "img/plugins/mountainous-red-mountain-1.jpg",
+		"name": "Mountainous Red Mountain",
+		"description": "This mod makes Red Mountain higher, so it's no longer a little hill in distant land, almost to the max of game engine limits. It is roughly 1.6 times higher then before."
+	},
+	{
+		"id": "vurts-grazelands",
+		"imageUrl": "img/plugins/vurts-grazelands-1.jpg",
+		"name": "Vurts Grazelands",
+		"description": "Yet another tree replacer for the Grazelands, this time inspired by african trees.."
 	}
 ]
