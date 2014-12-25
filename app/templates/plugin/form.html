@@ -4,11 +4,11 @@
             <div class="control-group required column-group gutters">
                 <label for="name" class="all-20 align-right">Name</label>
                 <div class="control all-60">
-                    <input type="text" id="name">
+                    <input type="text" id="name" ng-model="plugin.name">
                     <p class="tip">Name of the plugin</p>
                 </div>
                 <div class="control all-20">
-                    <input type="text" id="version">
+                    <input type="text" id="version" ng-model="plugin.version">
                     <p class="tip">Version</p>
                 </div>
             </div>
@@ -16,15 +16,14 @@
             <div class="control-group required column-group gutters">
                 <label for="author" class="all-20 align-right">Author</label>
                 <div class="control all-80">
-                    <input type="text" id="author">
+                    <input type="text" id="author" ng-model="plugin.author">
                 </div>
             </div>
 
             <div class="control-group required column-group gutters">
                 <label for="category" class="all-20 align-right">Category</label>
                 <div class="control all-80">
-                    <select id="category">
-                        <option ng-repeat="cat in categories" value="{{cat.id}}">{{cat.name}}</option>
+                    <select ng-options="cat.name for cat in categories track by cat.id" id="category" ng-model="plugin.category">
                     </select>
                 </div>
             </div>
@@ -32,7 +31,7 @@
             <div class="control-group column-group gutters">
                 <label for="description" class="all-20 align-right">Description</label>
                 <div class="control all-80">
-                    <textarea id="description"></textarea>
+                    <textarea id="description" ng-model="plugin.description"></textarea>
                 </div>
             </div>
 
