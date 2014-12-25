@@ -4,6 +4,7 @@ mwTreasuryApp = angular.module 'mwTreasuryApp', [
 	'mwTreasuryFilters',
 	'mwTreasuryServices',
 	'mwTreasuryDirectives',
+	'flow'
 ]
 
 mwTreasuryApp.config ['$routeProvider',
