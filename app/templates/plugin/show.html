@@ -5,6 +5,14 @@
 				<h1 class="push-left">{{plugin.name}}</h1>
 				<p class="push-right">Published: <time pubdate="pubdate">2009-10-09</time></p>
 			</header>
+			<div class="button-toolbar">
+				<div class="button-group">
+					<a class="ink-button" href="#/plugins/{{plugin.id}}/edit"><span class="fa fa-edit"></span></a>
+				</div>
+				<div class="button-group">
+					<a class="ink-button" href="javascript:void(0)"><span class="fa fa-trash-o"></span></a>
+				</div>
+			</div>
 			<figure class="ink-image vertical-space">
 				<img ng-src="{{mainImageUrl}}" alt="">					
 				<figcaption class="dark over-bottom">
