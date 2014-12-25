@@ -1,0 +1,10 @@
+<div class="column-group quarter-gutters">
+	<div class="xlarge-25 large-25 medium-25 small-25" ng-repeat="cat in categories">	
+		<figure class="ink-image">
+			<img ng-src="/img/categories/thumbs/{{cat.id}}.png">
+			<figcaption>
+				<a href="#/categories/{{cat.id}}">{{cat.name}}</a>
+			</figcaption>
+		</figure>
+	</div>
+</div>
