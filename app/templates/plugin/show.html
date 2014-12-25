@@ -21,6 +21,27 @@
 			</figure>
 			<p><blockquote>Author: <strong>{{plugin.author}}</strong></blockquote></p>
 			<p>{{plugin.description}}</p>
+			<h2>Downloads</h2>
+			<table ng-if="plugin.files" class="ink-table bordered" id="plugin-files">
+				<thead>
+					<tr>
+						<th class="align-left">File</th>
+						<th class="align-left">Size</th>
+						<th class="align-right">Download</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="file in plugin.files">
+						<td>{{file.name}}</td>
+						<td>{{file.size}}</td>
+						<td class="align-right"><a href="javascript:void(0)" class="ink-button"><i class="fa fa-save"></i></a></td>
+					</tr>
+				</tbody>
+			</table>
+			<h2>Links to other sites</h2>
+			<ul ng-if="plugin.links" class="unstyled" id="plugin-links">
+					<li ng-repeat="link in plugin.links"><a href="{{link.url}}" target="_blank">{{link.name}}</a></li>
+			</ul>
 			<footer>
 				<p><small>Updated at </small></p>
 			</footer>
