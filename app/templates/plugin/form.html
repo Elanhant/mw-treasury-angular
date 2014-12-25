@@ -37,7 +37,7 @@
 
         </fieldset>
         <fieldset class="all-50 small-100 tiny-100">
-            <div flow-init flow-files-submitted="$flow.upload()" flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]" class="ng-scope">
+            <div flow-init flow-files-submitted="$flow.upload()" flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]" class="ng-scope all-100">
                 <div class="drop" flow-drop="" ng-class="dropClass">
                     <span class="ink-button" flow-btn="">
                         Upload Image
@@ -55,6 +55,11 @@
                     <!-- ngRepeat: file in $flow.files -->
                     <div class="clear"></div>
                 </div>
+            </div>
+            <div class="all-25 small-100 tiny-100" ng-repeat="image in plugin.images">                
+                <figure class="ink-image">
+                    <img ng-src="{{image}}">
+                </figure>
             </div>
         </fieldset>
     </div>
