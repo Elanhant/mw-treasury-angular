@@ -13,3 +13,10 @@ directives.directive 'inkcarousel', ->
 		scope.$watch attrs['elements'], (newval, oldval)->
 			if newval.length
 				Ink.requireModules ['Ink.UI.Carousel_1'], (InkCarousel)-> new InkCarousel('#'+carouselId, {pagination: '#ink-pager-' + carouselId})
+
+directives.directive 'anchored', ->
+    restrict: 'A'
+    link: (scope, element, attrs)->
+      element.bind 'click', ->
+        el = document.getElementById(attrs['anchored'])
+        el.scrollIntoView()
