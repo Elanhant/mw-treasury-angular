@@ -12,7 +12,6 @@
 	</figure>
 </div>
 <div class="xlarge-50 large-50 all-50" ng-if="plugin.data.images.length <= 2">
-	<img ng-src="{{plugin.data.images[1]}}" alt="{{plugin.name}}">
 	<p class="quarter-top-space">{{plugin.description}}</p>
 </div>
 <div class="xlarge-25 large-25 all-50" ng-if="plugin.data.images.length > 2">
@@ -21,6 +20,6 @@
 </div>
 <div class="xlarge-25 large-25 all-50" ng-if="plugin.data.images.length > 2">
 	<img ng-src="{{plugin.data.images[2]}}" alt="{{plugin.name}}">
-	<p class="quarter-top-space">"Sit down," Edwin counselled soothingly. "Granser's all right. He's just  gettin' to the Scarlet Death, ain't you, Granser? He's just goin' to  tell us about it right now. Sit down, Hare-Lip. Go ahead, Granser."</p>
+	<p class="quarter-top-space">{{plugin.description}}</p>
 </div>
 </div>
