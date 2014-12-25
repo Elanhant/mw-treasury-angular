@@ -1,0 +1,62 @@
+<form action="" class="ink-form">
+    <div class="column-group gutters">
+        <fieldset class="all-50 small-100 tiny-100">
+            <div class="control-group required column-group gutters">
+                <label for="name" class="all-20 align-right">Name</label>
+                <div class="control all-60">
+                    <input type="text" id="name">
+                    <p class="tip">Name of the plugin</p>
+                </div>
+                <div class="control all-20">
+                    <input type="text" id="version">
+                    <p class="tip">Version</p>
+                </div>
+            </div>
+
+            <div class="control-group required column-group gutters">
+                <label for="author" class="all-20 align-right">Author</label>
+                <div class="control all-80">
+                    <input type="text" id="author">
+                </div>
+            </div>
+
+            <div class="control-group required column-group gutters">
+                <label for="category" class="all-20 align-right">Category</label>
+                <div class="control all-80">
+                    <select id="category">
+                        <option ng-repeat="cat in categories" value="{{cat.id}}">{{cat.name}}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="control-group column-group gutters">
+                <label for="description" class="all-20 align-right">Description</label>
+                <div class="control all-80">
+                    <textarea id="description"></textarea>
+                </div>
+            </div>
+
+        </fieldset>
+        <fieldset class="all-50 small-100 tiny-100">
+            <div flow-init flow-files-submitted="$flow.upload()" flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]" class="ng-scope">
+                <div class="drop" flow-drop="" ng-class="dropClass">
+                    <span class="ink-button" flow-btn="">
+                        Upload Image
+                        <input type="file" multiple="multiple" style="visibility: hidden; position: absolute;">
+                    </span>
+                    <span class="ink-button" flow-btn="" flow-directory="" ng-show="$flow.supportDirectory">
+                        Upload Folder of Images
+                        <input type="file" multiple="multiple" webkitdirectory="webkitdirectory" style="visibility: hidden; position: absolute;">
+                    </span>
+                    <b>OR</b>
+                    Drag And Drop your images here
+                </div>
+                <br>
+                <div>
+                    <!-- ngRepeat: file in $flow.files -->
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</form>
