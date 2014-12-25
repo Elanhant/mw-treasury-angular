@@ -7,6 +7,30 @@
         "img/plugins/redesigned-vivec-2.jpg",
         "img/plugins/redesigned-vivec-3.jpg"
     ], 
+    "files": [
+        {
+            "name": "archive_1.zip",
+            "size": "20 Mb"
+        },
+        {
+            "name": "archive_2.zip",
+            "size": "12 Kb"
+        },
+        {
+            "name": "archive_3.zip",
+            "size": "34 Mb"
+        }
+    ],
+    "links": [
+        {
+            "name": "Morrowind Modding History",
+            "url": "http://mw.modhistory.com"
+        },
+        {
+            "name": "Nexus Mods",
+            "url": "http://nexusmods.com/morrowind"
+        }
+    ],
     "name": "Redesigned Vivec", 
     "version": "2.0",
     "category": "gameplay"
