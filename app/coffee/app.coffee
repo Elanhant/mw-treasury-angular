@@ -13,6 +13,8 @@ mwTreasuryApp.config ['$routeProvider',
 			when('/plugins/new', templateUrl: 'templates/plugin/form.html', controller: 'PluginController').
 			when('/plugins/:pluginId', templateUrl: 'templates/plugin/show.html', controller: 'PluginController').
 			when('/plugins/:pluginId/edit', templateUrl: 'templates/plugin/form.html', controller: 'PluginController').
+			when('/categories', templateUrl: 'templates/category/index.html', controller: 'CategoriesController').
+			when('/categories/:categoryId', templateUrl: 'templates/category/show.html', controller: 'CategoryController').
 			otherwise(redirectTo: '/plugins')
 		return true
 ]

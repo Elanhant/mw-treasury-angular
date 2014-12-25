@@ -1,0 +1,22 @@
+[
+	{
+		"id": "gameplay",
+		"name": "Gameplay"
+	},
+	{
+		"id": "graphics",
+		"name": "Graphics"
+	},
+	{
+		"id": "weapons-and-armours",
+		"name": "Weapons and Armours"
+	},
+	{
+		"id": "locations",
+		"name": "Locations"
+	},
+	{
+		"id": "quests",
+		"name": "Quests"
+	}
+]

@@ -1,4 +1,4 @@
-services = angular.module('mwTreasuryServices', ['ngResource'])
+services = angular.module('mwTreasuryServices')
 services.factory 'Plugin', ['$resource', 
 	($resource)->
 		$resource 'plugins/:pluginId.json', {}, query: 
