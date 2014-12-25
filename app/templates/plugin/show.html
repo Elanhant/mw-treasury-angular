@@ -5,7 +5,7 @@
 				<h1 class="push-left">{{plugin.name}}</h1>
 				<p class="push-right">Published: <time pubdate="pubdate">2009-10-09</time></p>
 			</header>
-			<div class="button-toolbar">
+			<div class="button-toolbar" incsticky bottom-element="plugin-footer" top-element="plugin-info" id="plugin-toolbar">
 				<div class="button-group">
 					<a class="ink-button" href="" anchored="plugin-files">Download</a>
 					<a class="ink-button" href="" anchored="plugin-links">Mirrors</a>
@@ -21,7 +21,7 @@
 				    "Because you wear silver shoes and have killed the Wicked Witch. Besides, you have white in your frock, and only witches and sorceresses wear white."
 				</figcaption>
 			</figure>
-			<p><blockquote>Author: <strong>{{plugin.author}}</strong></blockquote></p>
+			<p id="plugin-info"><blockquote>Author: <strong>{{plugin.author}}</strong></blockquote></p>
 			<p>{{plugin.description}}</p>
 			<h2>Downloads</h2>
 			<table ng-if="plugin.files" class="ink-table bordered" id="plugin-files">
@@ -44,7 +44,7 @@
 			<ul ng-if="plugin.links" class="unstyled" id="plugin-links">
 					<li ng-repeat="link in plugin.links"><a href="{{link.url}}" target="_blank">{{link.name}}</a></li>
 			</ul>
-			<footer>
+			<footer id="plugin-footer">
 				<p><small>Updated at </small></p>
 			</footer>
 		</article>

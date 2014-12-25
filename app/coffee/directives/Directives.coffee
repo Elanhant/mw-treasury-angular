@@ -20,3 +20,12 @@ directives.directive 'anchored', ->
       element.bind 'click', ->
         el = document.getElementById(attrs['anchored'])
         el.scrollIntoView()
+
+directives.directive 'incsticky', ->
+    restrict: 'A'
+    require: '?id'
+    link: (scope, element, attrs)->
+    	bottomElement = '#' + attrs['bottomElement'] if attrs['bottomElement']
+    	topElement = '#' + attrs['topElement'] if attrs['topElement']
+	    Ink.requireModules ['Ink.UI.Sticky_1'], (Sticky)-> 
+	    	new Sticky '#' + element.attr('id'), bottomElement: bottomElement, topElement: topElement
