@@ -11,7 +11,7 @@ describe "PluginsController", ->
 			routeParams = $routeParams
 			httpBackend = $httpBackend
 
-			$httpBackend.expectGET('plugins/plugins.json').respond([name: 'Ashlander Tent', name: 'Redesigned Vivec'])
+			httpBackend.expectGET('plugins/plugins.json').respond([name: 'Ashlander Tent', name: 'Redesigned Vivec'])
 
 			ctrl = $controller 'PluginsController', $scope: scope
 		)
