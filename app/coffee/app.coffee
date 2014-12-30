@@ -20,6 +20,11 @@ mwTreasuryApp.config ['$routeProvider',
 		return true
 ]
 
+mwTreasuryApp.config ['$resourceProvider',
+	($resourceProvider)->
+		$resourceProvider.defaults.stripTrailingSlashes = false
+]
+
 controllers = angular.module('mwTreasuryControllers', [])
 filters = angular.module('mwTreasuryFilters', ['ngResource'])
 services = angular.module('mwTreasuryServices', [])

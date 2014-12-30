@@ -1,9 +1,7 @@
 services = angular.module('mwTreasuryServices')
 services.factory 'Category', ['$resource', 
 	($resource)->
-		$resource 'categories/:categoryId.json', {}, query: 
+		$resource 'http://127.0.0.1:3000/categories/:categoryId.json', { categoryId: "@id", format: 'json' }, query: 
 			method: 'GET'
-			params: 
-				categoryId: 'categories'
 			isArray: true
 ]
