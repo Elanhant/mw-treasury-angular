@@ -1,37 +1,42 @@
 <form action="" class="ink-form">
     <div class="column-group gutters">
         <fieldset class="all-50 small-100 tiny-100">
-            <div class="control-group required column-group gutters">
+            <div class="control-group required column-group gutters" ng-class="{'validation error':errors.name || errors.version}">
                 <label for="name" class="all-20 align-right">Name</label>
                 <div class="control all-60">
                     <input type="text" id="name" ng-model="plugin.name">
-                    <p class="tip">Name of the plugin</p>
+                    <p class="tip" ng-show="errors.name">{{errors.name}}</p>
+                    <p class="tip" ng-hide="errors.name">Name of the plugin</p>
                 </div>
                 <div class="control all-20">
                     <input type="text" id="version" ng-model="plugin.version">
-                    <p class="tip">Version</p>
+                    <p class="tip" ng-show="errors.version">{{errors.version}}</p>
+                    <p class="tip" ng-hide="errors.version">Version</p>
                 </div>
             </div>
 
-            <div class="control-group required column-group gutters">
+            <div class="control-group required column-group gutters" ng-class="{'validation error':errors.author}">
                 <label for="author" class="all-20 align-right">Author</label>
                 <div class="control all-80">
                     <input type="text" id="author" ng-model="plugin.author">
+                    <p class="tip" ng-show="errors.author">{{errors.author}}</p>
                 </div>
             </div>
 
-            <div class="control-group required column-group gutters">
+            <div class="control-group required column-group gutters" ng-class="{'validation error':errors.category}">
                 <label for="category" class="all-20 align-right">Category</label>
                 <div class="control all-80">
                     <select ng-options="cat.name for cat in categories track by cat.id" id="category" ng-model="plugin.category">
                     </select>
+                    <p class="tip" ng-show="errors.category">{{errors.category}}</p>
                 </div>
             </div>
 
-            <div class="control-group column-group gutters">
+            <div class="control-group column-group gutters" ng-class="{'validation error':errors.description}">
                 <label for="description" class="all-20 align-right">Description</label>
                 <div class="control all-80">
                     <textarea id="description" ng-model="plugin.description"></textarea>
+                    <p class="tip" ng-show="errors.description">{{errors.description}}</p>
                 </div>
             </div>
 
@@ -61,6 +66,9 @@
                     <img ng-src="{{image}}">
                 </figure>
             </div>
+        </fieldset>
+        <fieldset class="all-100">            
+            <button class="ink-button green" ng-click="save()">Save</button>
         </fieldset>
     </div>
 </form>

@@ -4,7 +4,7 @@
 	</div>
 </div>
 <h1>{{category.name}}</h1>
-<div class="column-group gutters" ng-repeat="plugin in plugins | filter: {category: category.id}">
+<div class="column-group gutters" ng-repeat="plugin in category.plugins">
 <div class="xlarge-50 large-50 all-100">
 	<figure class="ink-image">
 		<img ng-src="{{plugin.imageUrl}}" alt="{{plugin.name}}">
