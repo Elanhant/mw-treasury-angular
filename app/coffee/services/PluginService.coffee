@@ -7,4 +7,6 @@ services.factory 'Plugin', ['$resource',
 				isArray: true
 			create:
 				method: 'POST'
+			save:
+				method: 'PUT'
 ]
