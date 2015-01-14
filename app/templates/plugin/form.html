@@ -26,7 +26,8 @@
             <div class="control-group required column-group gutters" ng-class="{'validation error':errors.category_id}">
                 <label for="category_id" class="all-20 align-right">Category</label>
                 <div class="control all-80">
-                    <select ng-options="cat.name for cat in categories track by cat.id" id="category_id" ng-model="plugin.category_id">
+                    <select id="category_id" ng-model="plugin.category_id">
+                        <option ng-repeat="cat in categories" value="{{cat.id}}">{{cat.name}}</option>
                     </select>
                     <p class="tip" ng-show="errors.category_id">{{errors.category_id}}</p>
                 </div>
