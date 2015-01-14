@@ -44,3 +44,19 @@ summary {
 footer {
 	background: #ccc;
 }
+
+figure.ink-image.fixed-height > img {
+	height: 200px;
+	width: auto;
+}
+
+.drop.drop-bordered {	
+	padding: 2em;
+	border: 2px #bbb dashed;
+	border-radius: 5px;
+}
+
+.drop.drag-over {
+	background: #5cb85c;
+	color: #fff;
+}
