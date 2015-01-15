@@ -1,25 +1,44 @@
 <div class="column-group vertical-space">
 	<div class="all-100">
-		<img data-src="holder.js/1650x300/ink/auto" alt="1650x300">
+		<figure class="ink-image mw-category-header">
+			<img ng-src="{{category.image_url}}" alt="{{category.name}}">
+			<figcaption class="over-bottom">
+				<h1 class="push-left">{{category.name}}</h1>
+				<p class="push-right">
+          <a class="ink-button black" href="#/plugins/new/{{category.id}}">
+          	New plugin
+          </a>
+				</p>
+			</figcaption>
+		</figure>
 	</div>
 </div>
-<h1>{{category.name}}</h1>
+<div class="column-group vertical-space">
+	<div class="all-100">
+		<header>
+			<h1 class="push-left">{{category.name}}</h1>
+			<p class="push-right">New plugin</p>
+		</header>
+	</div>
+</div>
 <div class="column-group gutters" ng-repeat="plugin in category.plugins">
 <div class="xlarge-50 large-50 all-100">
-	<figure class="ink-image">
-		<img ng-src="{{plugin.imageUrl}}" alt="{{plugin.name}}">
-		<figcaption class="over-top dark">{{plugin.name}}</figcaption>
-	</figure>
+	<a href="#/plugins/{{plugin.id}}" title="Go to plugin page">
+		<figure class="ink-image mw-plugin-thumb">
+			<img ng-src="{{plugin.plugin_images[0].url}}" alt="{{plugin.name}}">
+			<figcaption class="over-top dark">{{plugin.name}}</figcaption>
+		</figure>
+	</a>
 </div>
-<div class="xlarge-50 large-50 all-50" ng-if="plugin.data.images.length <= 2">
+<div class="xlarge-50 large-50 all-50" ng-if="plugin.plugin_images.length <= 2">
 	<p class="quarter-top-space">{{plugin.description}}</p>
 </div>
-<div class="xlarge-25 large-25 all-50" ng-if="plugin.data.images.length > 2">
-	<img ng-src="{{plugin.data.images[1]}}" alt="{{plugin.name}}">
+<div class="xlarge-25 large-25 all-50" ng-if="plugin.plugin_images.length > 2">
+	<img ng-src="{{plugin.plugin_images[1].url}}" alt="{{plugin.name}}">
 	<p class="quarter-top-space">{{plugin.description}}</p>
 </div>
-<div class="xlarge-25 large-25 all-50" ng-if="plugin.data.images.length > 2">
-	<img ng-src="{{plugin.data.images[2]}}" alt="{{plugin.name}}">
+<div class="xlarge-25 large-25 all-50" ng-if="plugin.plugin_images.length > 2">
+	<img ng-src="{{plugin.plugin_images[2].url}}" alt="{{plugin.name}}">
 	<p class="quarter-top-space">{{plugin.description}}</p>
 </div>
 </div>

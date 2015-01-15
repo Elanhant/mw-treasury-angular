@@ -1,12 +1,17 @@
 controllers = angular.module('mwTreasuryControllers')
 controllers.controller 'PluginController', ['$scope', '$routeParams', '$location', 'Plugin', 'Category',
 	($scope, $routeParams, $location, Plugin, Category)->
-		$scope.plugin = Plugin.get(pluginId: $routeParams.pluginId, (plugin)-> 
-			$scope.mainImageUrl = plugin.images[0]['url']
-			$scope.relatedPlugins = Plugin.query(category: plugin.category, (plugins)-> $scope.relatedPlugins = plugins)
-			$scope.pluginFlowInit = {}
-			$scope.$parent.header = plugin.name
-		)
+		if $routeParams.pluginId
+			$scope.plugin = Plugin.get(pluginId: $routeParams.pluginId, (plugin)-> 
+				$scope.mainImageUrl = plugin.images[0]['url']
+				$scope.relatedPlugins = Plugin.query(category: plugin.category, (plugins)-> $scope.relatedPlugins = plugins)
+				$scope.pluginFlowInit = {}
+				$scope.$parent.header = plugin.category.name
+			)
+		else
+			$scope.plugin = {}
+			if $routeParams.categoryId
+				$scope.plugin.category_id = $routeParams.categoryId
 
 		$scope.categories = Category.query()
 		$scope.setImage = (imageUrl)-> $scope.mainImageUrl = imageUrl

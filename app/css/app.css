@@ -60,3 +60,22 @@ figure.ink-image.fixed-height > img {
 	background: #5cb85c;
 	color: #fff;
 }
+
+.mw-category-header {
+	max-height: 350px;
+}
+
+.mw-category-header > figcaption > h1,
+.mw-category-header > figcaption > p {
+	margin-bottom: 0;
+}
+
+.mw-category-header > figcaption > p {
+	margin-top: 4px;
+}
+
+.mw-plugin-thumb>img {	
+	max-height: 300px;
+	object-fit: contain;
+	background-color: #333
+}
