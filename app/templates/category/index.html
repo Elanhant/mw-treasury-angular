@@ -1,10 +1,12 @@
 <div class="column-group quarter-gutters">
 	<div class="xlarge-25 large-25 medium-25 small-25" ng-repeat="cat in categories">	
-		<figure class="ink-image">
-			<img ng-src="/img/categories/thumbs/{{cat.id}}.png">
-			<figcaption>
-				<a href="#/categories/{{cat.id}}">{{cat.name}}</a>
-			</figcaption>
-		</figure>
+    <a href="#/categories/{{cat.id}}" title="Go to plugin page">
+      <figure class="ink-image mw-category-thumb">
+        <img ng-src="{{cat.imageUrl}}" alt="{{cat.name}}">
+        <figcaption>
+          {{cat.name}}
+        </figcaption>
+      </figure>
+    </a>
 	</div>
 </div>

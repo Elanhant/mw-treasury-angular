@@ -74,8 +74,44 @@ figure.ink-image.fixed-height > img {
 	margin-top: 4px;
 }
 
+.mw-plugin-thumb {
+	/*height: 300px;*/
+}
 .mw-plugin-thumb>img {	
-	max-height: 300px;
+	/*max-height: 300px;*/
+	/*object-fit: contain;*/
+	/*background-color: #333*/
+}
+
+.mw-plugins-column .stacker-item+.stacker-item {
+	margin-top: 0.5em;
+}
+
+.mw-category-thumb>img {
+	/*max-height: 300px;*/
+	/*max-width: 300px;*/
+	height: 250px;
+	width: 250px;
 	object-fit: contain;
 	background-color: #333
 }
+
+.mw-category-toolbar .control-group,
+.mw-category-toolbar h1 {
+	margin-bottom: 0;
+}
+
+.mw-category-toolbar .ink-form {
+	margin-top: 4px;
+}
+/*
+Might be useful to scale and center images:
+img.scaled.centered {
+	max-width: 250px;	
+	max-height: 250px;	
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+*/

@@ -3,10 +3,13 @@ controllers.controller 'PluginController', ['$scope', '$routeParams', '$location
 	($scope, $routeParams, $location, Plugin, Category)->
 		if $routeParams.pluginId
 			$scope.plugin = Plugin.get(pluginId: $routeParams.pluginId, (plugin)-> 
-				$scope.mainImageUrl = plugin.images[0]['url']
+				$scope.mainImageUrl = plugin.images[0]['url'] if plugin.images[0]
 				$scope.relatedPlugins = Plugin.query(category: plugin.category, (plugins)-> $scope.relatedPlugins = plugins)
 				$scope.pluginFlowInit = {}
-				$scope.$parent.header = text: plugin.category.name, url: "#/categories/#{plugin.category.id}"
+				if plugin.category
+					$scope.$parent.header = text: plugin.category.name, url: "#/categories/#{plugin.category.id}"
+				else
+					$scope.$parent.header = 'No category'
 			)
 		else
 			$scope.plugin = {}

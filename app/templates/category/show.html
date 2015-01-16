@@ -1,36 +1,46 @@
-<div class="column-group vertical-space">
+<div class="column-group bottom-space">
 	<div class="all-100">
 		<figure class="ink-image mw-category-header">
 			<img ng-src="{{category.image_url}}" alt="{{category.name}}">
-			<figcaption class="over-bottom">
-				<h1 class="push-left">{{category.name}}</h1>
-				<p class="push-right">
-          <a class="ink-button black" href="#/plugins/new/{{category.id}}">
-          	New plugin
-          </a>
-				</p>
+			<figcaption class="over-bottom mw-category-toolbar">
+		    <div class="column-group">
+		    	<div class="all-66">
+						<h1 class="push-left">{{category.name}}</h1>		    		
+		    	</div>
+		    	<div class="all-33">
+						<form class="ink-form" ng-submit="searchPlugins({name: keyword})">					
+					    <div class="column-group">
+					        <div class="control-group all-66">		
+					            <div class="control prepend-button push-right" role="search">
+					                <input type="submit" value="Search" class="ink-button">
+					                <span><input type="text" ng-model="keyword" id="keyword"></span>
+					            </div>
+					        </div>
+					        <div class="control-group all-33">
+					            <div class="control push-right">
+							          <a class="ink-button black" href="#/plugins/new/{{category.id}}">
+							          	New plugin
+							          </a>            	
+					            </div>
+					        </div>
+					    </div>
+						</form>		    		
+		    	</div>
+			</div>
 			</figcaption>
 		</figure>
 	</div>
 </div>
-<div class="column-group gutters" ng-repeat="plugin in category.plugins">
-<div class="xlarge-50 large-50 all-100">
-	<a href="#/plugins/{{plugin.id}}" title="Go to plugin page">
-		<figure class="ink-image mw-plugin-thumb">
-			<img ng-src="{{plugin.plugin_images[0].url}}" alt="{{plugin.name}}">
-			<figcaption class="over-top dark">{{plugin.name}}</figcaption>
-		</figure>
-	</a>
-</div>
-<div class="xlarge-50 large-50 all-50" ng-if="plugin.plugin_images.length <= 2">
-	<p class="quarter-top-space">{{plugin.description}}</p>
-</div>
-<div class="xlarge-25 large-25 all-50" ng-if="plugin.plugin_images.length > 2">
-	<img ng-src="{{plugin.plugin_images[1].url}}" alt="{{plugin.name}}">
-	<p class="quarter-top-space">{{plugin.description}}</p>
-</div>
-<div class="xlarge-25 large-25 all-50" ng-if="plugin.plugin_images.length > 2">
-	<img ng-src="{{plugin.plugin_images[2].url}}" alt="{{plugin.name}}">
-	<p class="quarter-top-space">{{plugin.description}}</p>
-</div>
+
+<div id="stacker-container" class="column-group quarter-gutters">
+    <div class="xlarge-25 large-25 medium-33 small-100 tiny-100 stacker-column mw-plugins-column" ng-repeat="idx in [0, 1, 2, 3]">
+    	<div class="stacker-item" ng-repeat="plugin in category.plugins | modulo:4:idx" mw-plugins-stacker>
+				<a href="#/plugins/{{plugin.id}}" title="Go to plugin page">
+					<figure class="ink-image mw-plugin-thumb">
+						<img ng-src="{{plugin.plugin_images[0].url}}" alt="{{plugin.name}}">
+						<figcaption class="over-bottom dark">{{plugin.name}}</figcaption>
+					</figure>
+				</a>
+    	</div>
+    </div>
 </div>

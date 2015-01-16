@@ -12,3 +12,9 @@ filters.filter 'truncate', ->
 			return text
 		else
 			return String(text).substring(0, length - end.length) + end
+
+filters.filter 'modulo', ->
+	(arr, div, val)->
+		if not arr
+			return []
+		arr.filter (item, index)-> index % div == (val || 0)

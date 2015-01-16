@@ -29,3 +29,10 @@ directives.directive 'incsticky', ->
     	topElement = '#' + attrs['topElement'] if attrs['topElement']
 	    Ink.requireModules ['Ink.UI.Sticky_1'], (Sticky)-> 
 	    	new Sticky '#' + element.attr('id'), bottomElement: bottomElement, topElement: topElement
+
+directives.directive 'mwPluginsStacker', ->
+	link: (scope, element, attrs)->
+		if scope.$last and scope.$parent.$last		
+      Ink.requireModules ['Ink.UI.Stacker_1'], (Stacker)-> 
+        cols = large: 4, medium: 3, small: 1
+        new Stacker '#stacker-container', largeCols: cols.large, mediumCols: cols.medium
