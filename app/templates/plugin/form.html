@@ -63,11 +63,9 @@
                 </div>
             </div>
             <div class="all-25 small-100 tiny-100" ng-repeat="image in plugin.images">      
-                <figure class="ink-image fixed-height">
-                    <img ng-src="{{image.url}}">
-                    <figcaption class="dark">
-                        This is a dark caption.
-                    </figcaption>
+                <figure class="ink-image mw-plugin-thumb">
+                    <img ng-src="{{image.url}}" alt="{{plugin.name}}">
+                    <figcaption class="dark">Added {{image.created_at}}</figcaption>
                 </figure>
             </div>
         </fieldset>

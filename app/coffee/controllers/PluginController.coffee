@@ -6,7 +6,7 @@ controllers.controller 'PluginController', ['$scope', '$routeParams', '$location
 				$scope.mainImageUrl = plugin.images[0]['url']
 				$scope.relatedPlugins = Plugin.query(category: plugin.category, (plugins)-> $scope.relatedPlugins = plugins)
 				$scope.pluginFlowInit = {}
-				$scope.$parent.header = plugin.category.name
+				$scope.$parent.header = text: plugin.category.name, url: "#/categories/#{plugin.category.id}"
 			)
 		else
 			$scope.plugin = {}
