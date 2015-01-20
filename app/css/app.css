@@ -115,3 +115,37 @@ img.scaled.centered {
 }
 
 */
+
+.mw-plugin-slide img {
+	height: 400px;
+	object-fit: cover;
+}
+
+.mw-image-thumb img {
+	height: 150px;
+	object-fit: contain;
+	background-color: #333
+}
+
+figure.ink-image > a.over-bottom {
+	bottom: 0;
+}
+
+figure.ink-image > a.over-top {
+	top: 0;
+}
+
+figure.ink-image > a.over-bottom, 
+figure.ink-image > a.over-top {
+	position: absolute;
+	left: 0;
+	border: none;
+	color: rgba(255, 255, 255, 0.7);
+}
+
+.mw-image-removed {	
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background: rgba(34, 34, 34, 0.7);	
+}
