@@ -57,16 +57,28 @@
                     Drag And Drop your images here
                 </div>
                 <br>
-                <div>
-                    <img flow-img="file" ng-repeat="file in $flow.files"/>
-                    <div class="clear"></div>
+                <div class="column-group quarter-gutters">
+                    <div class="all-25 small-100 tiny-100" ng-repeat="file in $flow.files">
+                        <figure class="ink-image mw-image-thumb">
+                            <a class="over-top ink-label red" href="javascript:void(0)" title="Remove image" ng-click="removeUploaded(file)"><i class="fa fa-times"></i> Remove</a>
+                            <img flow-img="file"/>
+                            <figcaption class="dark small">{{file.name}}</figcaption>
+                            <div class="clear"></div>
+                        </figure>
+                    </div>
                 </div>
             </div>
-            <div class="all-25 small-100 tiny-100" ng-repeat="image in plugin.images">      
-                <figure class="ink-image mw-plugin-thumb">
-                    <img ng-src="{{image.url}}" alt="{{plugin.name}}">
-                    <figcaption class="dark">Added {{image.created_at}}</figcaption>
-                </figure>
+            <hr>
+            <div class="column-group quarter-gutters">
+                <div class="all-25 small-100 tiny-100" ng-repeat="image in plugin.images">
+                    <figure class="ink-image mw-image-thumb" ng-class="{'mw-image-shade': isRemoved(image.id)}">
+                        <div class="mw-image-removed" ng-if="isRemoved(image.id)"></div>
+                        <a class="over-top ink-label red" href="javascript:void(0)" title="Remove image" ng-click="removeImage(image.id)" ng-if="!isRemoved(image.id)"><i class="fa fa-times"></i> Remove</a>
+                        <a class="over-top ink-label green" href="javascript:void(0)" title="Cancel remove" ng-click="restoreImage(image.id)" ng-if="isRemoved(image.id)"><i class="fa fa-check"></i> Restore</a>
+                        <img ng-src="{{image.url}}" alt="{{plugin.name}}">
+                        <figcaption class="dark small">Added {{image.created_at}}</figcaption>
+                    </figure>
+                </div>                
             </div>
         </fieldset>
         <fieldset class="all-100">            

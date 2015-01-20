@@ -29,7 +29,7 @@ controllers.controller 'PluginController', ['$scope', '$routeParams', '$location
 
 		getFileReader = ($scope)->
 			fileReader = new FileReader()
-			fileReader.onloadend = -> $scope.img = fileReader.result; console.log fileReader
+			fileReader.onloadend = -> $scope.img = fileReader.result
 			return fileReader
 
 		$scope.saveImage = (flow)->
@@ -47,5 +47,22 @@ controllers.controller 'PluginController', ['$scope', '$routeParams', '$location
 		$scope.pluginFlowSuccess = (file, message, chunk)->
 			if typeof $scope.plugin.new_images == 'undefined'
 				$scope.plugin.new_images = []
-			$scope.plugin.new_images.push(url: file.name)
+			$scope.plugin.new_images.push(url: file.name, uid: file.uniqueIdentifier)
+
+		$scope.removeUploaded = (file)->
+			file.cancel()
+			$scope.plugin.new_images = $scope.plugin.new_images.filter (item, index)-> item.uid != file.uniqueIdentifier
+
+		$scope.removeImage = (imageId)->
+			if typeof $scope.plugin.removed_images == 'undefined'
+				$scope.plugin.removed_images = []
+			$scope.plugin.removed_images.push(imageId)
+
+		$scope.restoreImage = (imageId)->
+			if typeof $scope.plugin.removed_images == 'undefined'
+				$scope.plugin.removed_images = []
+			$scope.plugin.removed_images = $scope.plugin.removed_images.filter (item, index)-> item != imageId
+
+		$scope.isRemoved = (imageId)->
+			typeof $scope.plugin.removed_images != 'undefined' && $scope.plugin.removed_images.indexOf(imageId) > -1
 ]
