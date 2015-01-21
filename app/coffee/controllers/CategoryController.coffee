@@ -8,8 +8,8 @@ controllers.controller 'CategoryController', ['$scope', '$routeParams', 'Categor
     )
 
     $scope.loadPage = (pageNumber)->
-      Plugin.query(
-        angular.extend(page: pageNumber, $scope.searchParams, category_id: $routeParams.categoryId),
+      Category.search(
+        angular.extend(page: pageNumber, $scope.searchParams, categoryId: $routeParams.categoryId),
         (data, headers)->
           $scope.category.plugins = data
           $scope.currentPage = parseInt headers('x-current-page')

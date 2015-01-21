@@ -36,3 +36,9 @@ directives.directive 'mwPluginsStacker', ->
       Ink.requireModules ['Ink.UI.Stacker_1'], (Stacker)-> 
         cols = large: 4, medium: 3, small: 1
         new Stacker '#stacker-container', largeCols: cols.large, mediumCols: cols.medium
+
+directives.directive 'mwPluginsCarousel', ->
+  link: (scope, element, attrs)->
+    if scope.$last
+      Ink.requireModules ['Ink.UI.Carousel_1'], (InkCarousel)-> 
+        new InkCarousel '#plugins-carousel', pagination: '#plugins-pagination', nextLabel: '', previousLabel: '', autoAdvance: 5000
