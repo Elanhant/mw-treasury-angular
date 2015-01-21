@@ -4,6 +4,8 @@ filters.filter 'checkmark', ->
 
 filters.filter 'truncate', ->
 	(text, length, end)->
+		if not text
+			return ''
 		if isNaN(length)
 			length = 20
 		if end == undefined
