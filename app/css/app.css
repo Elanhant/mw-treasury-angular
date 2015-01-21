@@ -173,3 +173,73 @@ figure.ink-image > a.over-top {
 a.no-decoration {
 	color: #404040;
 }
+
+.no-modal-background {
+	background: none;	
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	-ms-border-radius: 0;
+	-o-border-radius: 0;
+	border-radius: 0;
+}
+
+.ink-modal.no-header .modal-close {
+	padding-top: 2px;
+	text-align: center;
+	color: #fff;
+	width: 26px;
+	height: 26px;
+	line-height: 1.2em;
+	border: 0;
+	background: #bfbfbf;
+	font-size: 0;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	-ms-border-radius: 50%;
+	-o-border-radius: 50%;
+	border-radius: 50%;
+	text-shadow: rgba(0, 0, 0, 0.6) 0 -1px 0;
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+	opacity: 0.6;
+	float: right;
+	position: absolute;
+	z-index: 2;
+	right: 10px;
+	top: 10px;
+}
+
+.ink-modal.no-header .modal-close:after {
+	content: "\f00d";
+	font-family: FontAwesome;
+	font-size: medium;
+	line-height: 22px;
+}
+
+.no-padding {
+	padding: 0 !important;
+}
+
+.no-padding-bottom {
+	padding-bottom: 0 !important;
+}
+
+.no-padding-left {
+	padding-left: 0 !important;
+}
+
+.no-padding-right {
+	padding-right: 0 !important;
+}
+
+.no-padding-top {
+	padding-top: 0 !important;
+}
+
+.mw-image-slide img {
+	height: 600px;
+	background: none;
+	object-fit: cover;
+}
