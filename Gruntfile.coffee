@@ -16,10 +16,11 @@ module.exports = (grunt)->
           preserve_dirs: true
     haml:
       compile:
-        files: grunt.file.expandMapping(['app/haml/**/*.haml'], '', 
+        files: grunt.file.expandMapping(['app/haml/**/*.haml', 'app/index.haml'], '', 
           rename: (base, path)-> path; base + path.replace(/\/haml\//, '/templates/').replace(/\.haml$/, '.html')
           )
       options:
+        language: 'js'
         'no-escape-attrs': true
       
 

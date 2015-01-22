@@ -1,0 +1,48 @@
+!!! 5
+%html(lang="en" ng-app="mwTreasuryApp")
+  %head
+    %meta(charset="utf-8")/
+    %title MW Treasury
+    %link(rel="stylesheet" href="bower_components/Ink/dist/css/ink.css")/
+    %link(rel="stylesheet" href="bower_components/Ink/dist/css/font-awesome.min.css")/
+    %link(rel="stylesheet" href="css/app.css")/
+
+    %script(src="bower_components/jquery/jquery.js")
+    %script(src="bower_components/Ink/dist/js/ink-all.js")
+
+    %script(src="bower_components/angular/angular.js")
+    %script(src="bower_components/angular-route/angular-route.js")
+    %script(src="bower_components/angular-resource/angular-resource.js")
+
+    %script(src="bower_components/flow.js/dist/flow.js")
+    %script(src="bower_components/ng-flow/dist/ng-flow.js")
+
+    %script(src="js/app.js")
+    %script(src="js/controllers.js")
+    %script(src="js/filters.js")
+    %script(src="js/services.js")
+    %script(src="js/directives.js")
+  %body(flow-prevent-drop='' ng-controller="BaseController")
+    .ink-grid
+      %header.clearfix.vertical-padding
+        %h1.logo.xlarge-push-left.large-push-left MW Treasury
+          %small.fw-500
+            %a(ng-if="header.url" href="{{header.url}}") {{header.text}}
+            {{header.url ? '' : header}}
+        %nav.ink-navigation.xlarge-push-right.large-push-right.half-top-space
+          %ul.menu.horizontal.black
+            %li
+              %a(href="#/plugins") Main page
+            %li
+              %a(href="#/categories") Categories
+      %div(ng-view='')
+      %footer.clearfix
+        .ink-grid
+          %ul.unstyled.inline.half-vertical-space
+            %li
+              %a(href="#") About
+            %li
+              %a(href="#") Sitemap
+            %li
+              %a(href="#") Contacts
+          %p.note 2014. MW Treasury
