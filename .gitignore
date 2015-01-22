@@ -5,3 +5,6 @@ node_modules/
 tmp
 .idea
 bower_components/
+
+# Ignore .html templates due to HAML being used
+app/templates/**/*.html
