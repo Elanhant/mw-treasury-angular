@@ -1,0 +1,27 @@
+.column-group.bottom-space
+  .all-100
+    %figure.ink-image.mw-category-header
+      %img(ng-src="{{category.image_url}}" alt="{{category.name}}")
+      %figcaption.over-bottom.mw-category-toolbar
+        .column-group
+          .all-66
+            %h1.push-left {{category.name}}
+          .all-33
+            %form.ink-form(ng-submit="searchPlugins({name: keyword})")
+              .column-group
+                .control-group.all-66
+                  .control.append-button(role="search")
+                    %span
+                      %input#keyword(type="text" ng-model="keyword")
+                    %input.ink-button(type="submit" value="Search")
+                .control-group.all-33
+                  .control.push-right
+                    %a.ink-button.black(href="#/plugins/new/{{category.id}}") New plugin
+
+#stacker-container.column-group.quarter-gutters
+  .xlarge-25.large-25.medium-33.small-100.tiny-100.stacker-column.mw-plugins-column(ng-repeat="idx in [0,1,2,3]")
+    .stacker-item(ng-repeat="plugin in category.plugins | modulo:4:idx" mw-plugins-stacker)
+      %a(href="#/plugins/{{plugin.id}}" title="Go to plugin page")
+        %figure.ink-image.mw-plugin-thumb
+          %img(ng-src="{{plugin.plugin_images[0].url}}" alt="{{plugin.name}}")
+          %figcaption.over-bottom.dark {{plugin.name}}

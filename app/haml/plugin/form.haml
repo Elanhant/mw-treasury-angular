@@ -1,0 +1,68 @@
+%form.ink-form(action='')
+  .column-group.gutters
+    %fieldset.all-50.small-100.tiny-100
+      .control-group.required.column-group.gutters(ng-class="{'validation error':errors.name || errors.version}")
+        %label.all-20.align-right(for="name") Name
+        .control.all-60
+          %input#name(ng-model="plugin.name" type="text")
+          %p.tip(ng-show="errors.name") {{errors.name}}
+          %p.tip(ng-hide="errors.name") Name of the plugin
+        .control.all-20
+          %input#version(ng-model="plugin.version" type="text")
+          %p.tip(ng-show="errors.version") {{errors.version}}
+          %p.tip(ng-hide="errors.version") Version
+
+      .control-group.required.column-group.gutters("{'validation error':errors.author}")
+        %label.all-20.align-right(for="author") Author
+        .control.all-80
+          %input#author(ng-model="plugin.author" type="text")
+          %p.tip(ng-show="errors.author") {{errors.author}}
+
+      .control-group.required.column-group.gutters("{'validation error':errors.category_id}")
+        %label.all-20.align-right(for="category_id") Category
+        .control.all-80
+          %select#category_id(ng-model="plugin.category_id")
+            %option(ng-repeat="cat in categories" value="{{cat.id}}") {{cat.name}}
+          %p.tip(ng-show="errors.category_id") {{errors.category_id}}
+
+      .control-group.required.column-group.gutters("{'validation error':errors.description}")
+        %label.all-20.align-right(for="description") Description
+        .control.all-80
+          %textarea#description(ng-model="plugin.description")
+          %p.tip(ng-show="errors.description") {{errors.description}}
+
+    %fieldset.all-50.small-100.tiny-100
+      .ng-scope.all-100(flow-init="pluginFlowInit" flow-file-success="pluginFlowSuccess($file, $message)" flow-files-submitted="saveImage($flow)" flow-file-added="!!\{png:1,gif:1,jpg:1,jpeg:1\}[$file.getExtension()]")
+        %span.ink-button(flow-btn='') 
+          Upload Image
+          %input(type="file" multiple="multiple" style="visibility: hidden; position: absolute;")
+        %span.ink-button(flow-btn='' flow-directory='' ng-show="$flow.supportDirectory") 
+          Upload Folder of Images
+          %input(type="file" multiple="multiple" webkitdirectory="webkitdirectory" style="visibility: hidden; position: absolute;")
+        .drop.align-center.drop-bordered.top-space(flow-drop='' ng-class="dropClass" ng-class="dropClass" flow-drag-enter="dropClass='drag-over'" flow-drag-leave="dropClass=''")
+          %b OR 
+           Drag And Drop your images here
+         %br/
+        .column-group.quarter-gutters
+          .all-25.small-100.tiny-100(ng-repeat="file in $flow.files")
+            %figure.ink-image.mw-image-thumb
+              %a.over-top.ink-label.red(href="javascript:void(0)" title="Remove image" ng-click="removeUploaded(file)")
+                %i.fa.fa-times
+                Remove
+              %img(flow-img="file")
+              %figcaption.dark.small {{file.name}}
+              .clear
+      .column-group.quarter-gutters
+        .all-25.small-100.tiny-100(ng-repeat="image in plugin.images")
+          %figure.ink-image.mw-image-thumb(ng-class="{'mw-image-shade': isRemoved(image.id)}")
+            .mw-image-removed(ng-if="isRemoved(image.id)")
+            %a.over-top.ink-label.red(href="javascript:void(0)" title="Remove image" ng-click="removeImage(image.id)" ng-if="!isRemoved(image.id)")
+              %i.fa.fa-times
+              Remove
+            %a.over-top.ink-label.green(href="javascript:void(0)" title="Cancel remove" ng-click="restoreImage(image.id)" ng-if="isRemoved(image.id)")
+              %i.fa.fa-check
+              Restore
+            %img(ng-src="{{image.url}}" alt="{{plugin.name}}")
+            %figcaption.dark.small Added {{image.created_at}}
+    %fieldset.all-100
+      %button.ink-button.green(ng-click="save()") Save

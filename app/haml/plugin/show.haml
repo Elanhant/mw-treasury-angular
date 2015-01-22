@@ -1,0 +1,63 @@
+%section.column-group.gutters.article(ng-keydown="slide($event)")
+  .xlarge-70.large-70.medium-60.small-100.tiny-100
+    %article
+      %header
+        %h1.push-left {{plugin.name}}
+        %p.push-right 
+          Added: 
+          %time(pubdate="pubdate") {{plugin.created_at}}
+      #plugin-toolbar.button-toolbar(incsticky='' bottom-element="plugin-footer" top-element="plugin-info")
+        .button-group
+          %a.ink-button(href="" anchored="plugin-files") Download
+          %a.ink-button(href="" anchored="plugin-links") Mirrors
+        .button-group
+          %a.ink-button(href="#/plugins/{{plugin.id}}/edit")
+            %span.fa.fa-edit
+          %a.ink-button(href="javascript:void(0)")
+            %span.fa.fa-trash-o
+      %figure.ink-image.vertical-space(ng-show="mainImageUrl")
+        %img(ng-src="{{mainImageUrl}}" alt="")
+        %figcaption.dark.over-bottom Some text
+      %p#plugin-info
+        %blockquote Author: 
+          %strong {{plugin.author}}
+      %p {{plugin.description}}
+      %h2 Downloads
+      %table#plugin-files.ink-table.bordered(ng-if="plugin.files")
+        %thead
+          %tr
+            %th.align-left File
+            %th.align-left Size
+            %th.align-right Download
+        %tbody
+          %tr(ng-repeat="file in plugin.files")
+            %td {{file.name}}
+            %td {{file.size}}
+            %td.align-right
+              %a.ink-button(href="javascript:void(0)")
+                %i.fa.fa-save
+      %h2 Links to other sites
+      %ul#plugin-links.unstyled(ng-if="plugin.links")
+        %li(ng-repeat="link in plugin.links")
+          %a(href="{{link.url}}" target="_blank") {{link.name}}
+      %footer#plugin-footer
+        %p
+          %small Updated at {{plugin.updated_at}}
+  %section.xlarge-30.large-30.medium-40.small-100.tiny-100
+    %h2 Images
+    %ul.unstyled
+      %li.column-group(ng-repeat="image in plugin.images")
+        %a#gallery-modal-trigger(href="javascript:void(0)" ng-click="triggerGallery($index)" ng-hide="image.url == mainImageUrl")
+          %figure.ink-image
+            %img(ng-src="{{image.url}}" alt="")
+            %figcaption.dark.over-bottom {{image.created_at}}
+.ink-shade.fade
+  #gallery-modal.ink-modal.fade.no-modal-background.no-header(data-trigger="#gallery-modal-trigger" role="dialog" aria-hidden="true")
+    #modal-content.modal-body.no-padding
+      %button.modal-close.ink-dismiss
+      #gallery-carousel.ink-carousel(data-autoload="false")
+        %ul.stage.column-group.unstyled
+          %li.slide.all-100(ng-repeat="image in plugin.images")
+            %figure.ink-image.mw-image-slide
+              %img(ng-src="{{image.url}}" alt="")
+              %figcaption.dark {{image.created_at}}

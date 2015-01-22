@@ -1,0 +1,40 @@
+.panel.bottom-space
+  %form.ink-form
+    .column-group.horizontal-gutters
+      .control-group.all-50.small-100.tiny-100.no-margin-bottom
+        .control.prepend-button(role="search")
+          %input.ink-button(type="submit" value="Search")
+          %span
+            %input(type="text" ng-model="keyword" placeholder="Type category name...")
+      .control-group.all-50.small-100.tiny-100.no-margin-bottom
+        .control.push-right
+          %button.ink-button(ng-show="!squareView" ng-click="squareView = true" title="Toggle thumb view")
+            %span.fa.fa-th-large
+          %button.ink-button(ng-show="squareView" ng-click="squareView = false" title="Toggle list view")
+            %span.fa.fa-reorder
+
+.column-group.quarter-gutters(ng-if="squareView")
+  .all-25(ng-repeat="cat in categories | filter:{name: keyword}")
+    %a.no-decoration(href="#/categories/{{cat.id}}" title="Go to category page")
+      %figure.ink-image.mw-category-thumb
+        %img(ng-src="{{cat.imageUrl}}" alt="{{cat.name}}")
+        %figcaption
+          {{cat.name}}
+          %span.fw-400.push-right
+            %i.fa.fa-files-o 
+             {{cat.plugins_count}}
+
+.column-group(ng-if="!squareView")
+  .all.bottom-space(ng-repeat="cat in categories | filter:{name: keyword}")
+    %a.no-decoration(href="#/categories/{{cat.id}}" title="Go to category page")
+      %figure.ink-image.mw-category-header
+        %img(ng-src="{{cat.imageUrl}}" alt="{{cat.name}}")
+        %figcaption.over-bottom.mw-category-toolbar
+          .column-group
+            .all-66
+              %h1.push-left {{cat.name}}
+            .all-33.push-right.align-right
+              %span.fw-900.large
+                %i.fa.fa-files-o 
+                 {{cat.plugins_count}}
+

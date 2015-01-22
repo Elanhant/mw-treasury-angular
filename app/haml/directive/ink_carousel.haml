@@ -1,0 +1,8 @@
+%ul.stage.column-group.half-gutters
+  %li.slide.all-33.small-50.tiny-100(ng-repeat="element in inkCarElements")
+    %img.half-bottom-space(alt="{{element.name}}" ng-src="{{element[incCarAttrImage]}}")
+    .description
+      %h4.no-margin
+        %a(href="#/{{incCarViewPath}}/{{element.id}}") {{element.name}}
+      %h5.slap Placeholder for cats
+      %p {{element[incCarAttrDesc]}}

@@ -1,0 +1,23 @@
+.panel.bottom-space
+  #plugins-carousel.ink-carousel(data-autoload=false)
+    %ul.stage.column-group.half-gutters.unstyled(style="width: 100%; left: -300%;")
+      %li.slide.all-100.mw-plugin-slide(mw-plugins-carousel='' ng-repeat="plugin in plugins")
+        %a(href="#/plugins/plugin.id" title="Go to plugin page")
+          %figure.ink-image.mw-plugin-thumb
+            %img(ng-src="{{plugin.imageUrl}}" alt="{{plugin.name}}")
+            %figcaption.over-bottom-dark
+              {{plugin.name}}
+              %br/
+              {{plugin.description | truncate:140}}              
+
+    %nav#plugins-pagination.ink-navigation(data-previous-label="" data-next-label="")
+      %ul.pagination.chevron
+        %li.previous
+          %a(href="#")
+            %span
+        %li(ng-repeat="plugin in plugins")
+          %a(href="#" data-index="{{$index}}")
+            {{$index+1}}
+        %li.next
+          %a(href="#")
+            %span
