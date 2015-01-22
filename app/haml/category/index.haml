@@ -21,8 +21,8 @@
         %figcaption
           {{cat.name}}
           %span.fw-400.push-right
-            %i.fa.fa-files-o 
-             {{cat.plugins_count}}
+            %i.fa.fa-files-o>
+            {{cat.plugins_count}}
 
 .column-group(ng-if="!squareView")
   .all.bottom-space(ng-repeat="cat in categories | filter:{name: keyword}")
@@ -35,6 +35,6 @@
               %h1.push-left {{cat.name}}
             .all-33.push-right.align-right
               %span.fw-900.large
-                %i.fa.fa-files-o 
-                 {{cat.plugins_count}}
+                %i.fa.fa-files-o>
+                {{cat.plugins_count}}
 

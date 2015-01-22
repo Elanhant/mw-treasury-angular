@@ -15,12 +15,13 @@
             %span.fa.fa-edit
           %a.ink-button(href="javascript:void(0)")
             %span.fa.fa-trash-o
-      %figure.ink-image.vertical-space(ng-show="mainImageUrl")
-        %img(ng-src="{{mainImageUrl}}" alt="")
-        %figcaption.dark.over-bottom Some text
+      %a#gallery-modal-trigger(href="javascript:void(0)" ng-click="triggerGallery(0)")
+        %figure.ink-image.vertical-space(ng-show="mainImageUrl")
+          %img(ng-src="{{mainImageUrl}}" alt="")
+          %figcaption.dark.over-bottom Some text
       %p#plugin-info
         %blockquote Author: 
-          %strong {{plugin.author}}
+          %strong> {{plugin.author}}
       %p {{plugin.description}}
       %h2 Downloads
       %table#plugin-files.ink-table.bordered(ng-if="plugin.files")

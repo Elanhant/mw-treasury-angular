@@ -1,31 +1,34 @@
+- var stylesheets = [
+    "bower_components/Ink/dist/css/ink.css",
+    "bower_components/Ink/dist/css/font-awesome.min.css",
+    "css/app.css"
+  ]
+- var scripts = [
+    "bower_components/jquery/jquery.js", 
+    "bower_components/Ink/dist/js/ink-all.js",
+    "bower_components/angular/angular.js", 
+    "bower_components/angular-route/angular-route.js", 
+    "bower_components/angular-resource/angular-resource.js",
+    "bower_components/flow.js/dist/flow.js", 
+    "bower_components/ng-flow/dist/ng-flow.js",
+    "js/app.js", "js/controllers.js", "js/filters.js", "js/services.js", "js/directives.js"
+  ]
+- var title = "MW Treasury"
+
 !!! 5
 %html(lang="en" ng-app="mwTreasuryApp")
   %head
-    %meta(charset="utf-8")/
-    %title MW Treasury
-    %link(rel="stylesheet" href="bower_components/Ink/dist/css/ink.css")/
-    %link(rel="stylesheet" href="bower_components/Ink/dist/css/font-awesome.min.css")/
-    %link(rel="stylesheet" href="css/app.css")/
+    %meta(charset="utf-8")
+    %title= title
+    :each sheet in stylesheets
+      %link(rel="stylesheet" href=sheet)
+    :each script in scripts
+      %script(src=script)
 
-    %script(src="bower_components/jquery/jquery.js")
-    %script(src="bower_components/Ink/dist/js/ink-all.js")
-
-    %script(src="bower_components/angular/angular.js")
-    %script(src="bower_components/angular-route/angular-route.js")
-    %script(src="bower_components/angular-resource/angular-resource.js")
-
-    %script(src="bower_components/flow.js/dist/flow.js")
-    %script(src="bower_components/ng-flow/dist/ng-flow.js")
-
-    %script(src="js/app.js")
-    %script(src="js/controllers.js")
-    %script(src="js/filters.js")
-    %script(src="js/services.js")
-    %script(src="js/directives.js")
   %body(flow-prevent-drop='' ng-controller="BaseController")
     .ink-grid
       %header.clearfix.vertical-padding
-        %h1.logo.xlarge-push-left.large-push-left MW Treasury
+        %h1.logo.xlarge-push-left.large-push-left= title
           %small.fw-500
             %a(ng-if="header.url" href="{{header.url}}") {{header.text}}
             {{header.url ? '' : header}}
