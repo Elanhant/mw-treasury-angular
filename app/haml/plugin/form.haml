@@ -28,75 +28,108 @@
       .control-group.required.column-group.gutters(ng-class="{'validation error':errors.description}")
         %label.all-20.align-right(for="description") Description
         .control.all-80
-          %textarea#description(ng-model="plugin.description")
+          %textarea#description(ng-model="plugin.description" froala='')
           %p.tip(ng-show="errors.description") {{errors.description}}
 
     %fieldset.all-50.small-100.tiny-100
-      .ng-scope.all-100(flow-init="{target: 'http://127.0.0.1:3000/plugin_files/upload'}" flow-file-success="pluginFlowSuccessFile($file, $message)" flow-files-submitted="saveFile($flow)")
-        %span.ink-button(flow-btn='') 
-          Upload File
-          %input(type="file" multiple="multiple" style="visibility: hidden; position: absolute;")
-        %span.ink-button(flow-btn='' flow-directory='' ng-show="$flow.supportDirectory") 
-          Upload Folder
-          %input(type="file" multiple="multiple" webkitdirectory="webkitdirectory" style="visibility: hidden; position: absolute;")
-        %span.push-right.ink-label(ng-class="$flow.getSize() > 1000 * 1000 * 50 ? 'red' : 'blue'") Total size: {{$flow.getSize()|bytes}}
-        .drop.align-center.drop-bordered.top-space(flow-drop='' ng-class="dropClass" ng-class="dropClass" flow-drag-enter="dropClass='drag-over'" flow-drag-leave="dropClass=''")
-          %b> OR
-          Drag And Drop your files here
-        %br/
-        .column-group.quarter-gutters
-          .all-100(ng-repeat="file in $flow.files")
-            {{file.name|truncate:30}} {{file.size|bytes}}
-            %a.push-right.ink-label.red(href="javascript:void(0)" title="Remove file" ng-click="removeUploaded(file)")
-              %i.fa.fa-times>
-              Remove
-            .ink-progress-bar.blue(role="progressbar")
-              %span.caption {{file.progress() * 100 | round}}% Complete
-              .bar.blue(ng-style="{width: (file.progress() * 100) + '%'}" style="width: 100%;")              
-      %ul.column-group.quarter-gutters.unstyled
-        %li.all-100(ng-repeat="file in plugin.files" ng-style="{background: fileRemoved(file.id) ? '#858585' : 'none'}")
-          {{$index+1}}. {{file.name|truncate:30}} {{file.size|bytes}}
-          %a.push-right.ink-label.red(href="javascript:void(0)" title="Remove file" ng-click="removeFile(file.id)" ng-if="!fileRemoved(file.id)")
-            %i.fa.fa-times>
-            Remove
-          %a.push-right.ink-label.green(href="javascript:void(0)" title="Cancel remove" ng-click="restoreFile(file.id)" ng-if="fileRemoved(file.id)")
-            %i.fa.fa-check>
-            Restore
-
-    .fieldset.all-100
-      .ng-scope.all-100(flow-init="pluginFlowInit" flow-file-success="pluginFlowSuccess($file, $message, $chunk)" flow-files-submitted="saveFile($flow, true)" flow-file-added="!!\{png:1,gif:1,jpg:1,jpeg:1\}[$file.getExtension()]")
-        .drop.align-center.drop-bordered.top-space(flow-drop='' ng-class="dropClass" ng-class="dropClass" flow-drag-enter="dropClass='drag-over'" flow-drag-leave="dropClass=''")
+      .panel 
+        %h3.no-margin-bottom(ng-click="showFiles = !showFiles")
+          %a.no-underline(ng-class="{'no-decoration': showFiles}") Files
+            %span.push-right
+              %i.fa.fa-files-o>
+              {{plugin.files.length}}
+        .ng-scope.all-100.top-space(flow-init="{target: 'http://127.0.0.1:3000/plugin_files/upload'}" flow-file-success="pluginFlowSuccessFile($file, $message)" flow-files-submitted="saveFile($flow)" ng-show="showFiles")
           %span.ink-button(flow-btn='') 
-            Upload Image
+            Upload File
             %input(type="file" multiple="multiple" style="visibility: hidden; position: absolute;")
           %span.ink-button(flow-btn='' flow-directory='' ng-show="$flow.supportDirectory") 
-            Upload Folder of Images
+            Upload Folder
             %input(type="file" multiple="multiple" webkitdirectory="webkitdirectory" style="visibility: hidden; position: absolute;")
-          %b> OR
-          Drag And Drop your images here
-        %br/
-        .column-group.quarter-gutters
-          .all-25.small-100.tiny-100(ng-repeat="file in $flow.files")
-            %figure.ink-image.mw-image-thumb
-              %a.over-top.ink-label.red(href="javascript:void(0)" title="Remove image" ng-click="removeUploaded(file, true)")
+          %span.push-right.ink-label(ng-class="$flow.getSize() > 1000 * 1000 * 50 ? 'red' : 'blue'") Total size: {{$flow.getSize()|bytes}}
+          .drop.align-center.drop-bordered.top-space(flow-drop='' ng-class="dropClass" ng-class="dropClass" flow-drag-enter="dropClass='drag-over'" flow-drag-leave="dropClass=''")
+            %b> OR
+            Drag And Drop your files here
+          %br/
+          .column-group.quarter-gutters()
+            .all-100(ng-repeat="file in $flow.files")
+              {{file.name|truncate:30}} {{file.size|bytes}}
+              %a.push-right.ink-label.red(href="javascript:void(0)" title="Remove file" ng-click="removeUploaded(file)")
                 %i.fa.fa-times>
                 Remove
-              %img(flow-img="file")
-              %figcaption.dark.small {{file.name}}
-              .clear
-      .column-group.quarter-gutters
-        .all-25.small-100.tiny-100(ng-repeat="image in plugin.images")
-          %figure.ink-image.mw-image-thumb(ng-class="{'mw-image-shade': imageRemoved(image.id)}")
-            .mw-image-removed(ng-if="imageRemoved(image.id)")
-            %a.over-top.ink-label.red(href="javascript:void(0)" title="Remove image" ng-click="removeImage(image.id)" ng-if="!imageRemoved(image.id)")
+              .ink-progress-bar.blue(role="progressbar")
+                %span.caption {{file.progress() * 100 | round}}% Complete
+                .bar.blue(ng-style="{width: (file.progress() * 100) + '%'}" style="width: 100%;")              
+        %ul.column-group.quarter-gutters.unstyled(ng-show="showFiles")
+          %li.all-100(ng-repeat="file in plugin.files" ng-style="{background: fileRemoved(file.id) ? '#858585' : 'none'}")
+            {{$index+1}}. {{file.name|truncate:30}} {{file.size|bytes}}
+            %a.push-right.ink-label.red(href="javascript:void(0)" title="Remove file" ng-click="removeFile(file.id)" ng-if="!fileRemoved(file.id)")
               %i.fa.fa-times>
               Remove
-            %a.over-top.ink-label.green(href="javascript:void(0)" title="Cancel remove" ng-click="restoreImage(image.id)" ng-if="imageRemoved(image.id)")
+            %a.push-right.ink-label.green(href="javascript:void(0)" title="Cancel remove" ng-click="restoreFile(file.id)" ng-if="fileRemoved(file.id)")
               %i.fa.fa-check>
               Restore
-            %img(ng-src="{{image.url}}" alt="{{plugin.name}}")
-            %figcaption.dark.small Added {{image.created_at}}
-      %hr/
+
+    %fieldset.all-50.small-100.tiny-100
+      .panel 
+        %h3.no-margin-bottom(ng-click="showImages = !showImages")
+          %a.no-underline(ng-class="{'no-decoration': showImages}") Images
+            %span.push-right
+              %i.fa.fa-picture-o>
+              {{plugin.images.length}}
+        .ng-scope.all-100(flow-init="pluginFlowInit" flow-file-success="pluginFlowSuccess($file, $message, $chunk)" flow-files-submitted="saveFile($flow, true)" flow-file-added="!!\{png:1,gif:1,jpg:1,jpeg:1\}[$file.getExtension()]" ng-show="showImages")
+          .drop.align-center.drop-bordered.top-space(flow-drop='' ng-class="dropClass" ng-class="dropClass" flow-drag-enter="dropClass='drag-over'" flow-drag-leave="dropClass=''")
+            %span.ink-button(flow-btn='') 
+              Upload Image
+              %input(type="file" multiple="multiple" style="visibility: hidden; position: absolute;")
+            %span.ink-button(flow-btn='' flow-directory='' ng-show="$flow.supportDirectory") 
+              Upload Folder of Images
+              %input(type="file" multiple="multiple" webkitdirectory="webkitdirectory" style="visibility: hidden; position: absolute;")
+            %b> OR
+            Drag And Drop your images here
+          %br/
+          .column-group.quarter-gutters
+            .all-25.small-100.tiny-100(ng-repeat="file in $flow.files")
+              %figure.ink-image.mw-image-thumb
+                %a.over-top.ink-label.red(href="javascript:void(0)" title="Remove image" ng-click="removeUploaded(file, true)")
+                  %i.fa.fa-times>
+                  Remove
+                %img(flow-img="file")
+                %figcaption.dark.small {{file.name}}
+                .clear
+        .column-group.quarter-gutters(ng-show="showImages")
+          .all-25.small-100.tiny-100(ng-repeat="image in plugin.images")
+            %figure.ink-image.mw-image-thumb(ng-class="{'mw-image-shade': imageRemoved(image.id)}")
+              .mw-image-removed(ng-if="imageRemoved(image.id)")
+              %a.over-top.ink-label.red(href="javascript:void(0)" title="Remove image" ng-click="removeImage(image.id)" ng-if="!imageRemoved(image.id)")
+                %i.fa.fa-times>
+                Remove
+              %a.over-top.ink-label.green(href="javascript:void(0)" title="Cancel remove" ng-click="restoreImage(image.id)" ng-if="imageRemoved(image.id)")
+                %i.fa.fa-check>
+                Restore
+              %img(ng-src="{{image.url}}" alt="{{plugin.name}}")
+              %figcaption.dark.small Added {{image.created_at}}
+
+    %fieldset.all-50.small-100.tiny-100
+      .panel 
+        %h3.no-margin-bottom(ng-click="showLinks = !showLinks")
+          %a.no-underline(ng-class="{'no-decoration': showLinks}") Links
+            %span.push-right
+              %i.fa.fa-link>
+              {{plugin.links.length || 0}}
+        .all-100.top-space(ng-show="showLinks")
+          .bottom-space
+            %button.ink-button(ng-click="addLink()") Add Link
+          .column-group.control-group.quarter-gutters.all-100(ng-repeat="link in plugin.new_links")
+              .control.all-40
+                %input(ng-model="link.name" type="text" placeholder="Name")
+              .control.all-60.append-label
+                %input(ng-model="link.url" type="text" placeholder="URL")
+                %a.over-top.ink-label.red(href="javascript:void(0)" title="Remove image" ng-click="removeLink($index)")
+                  %i.fa.fa-times>
+                  Remove
+
+        .column-group.quarter-gutters(ng-show="showLinks")
+          .all-25.small-100.tiny-100(ng-repeat="link in plugin.links")
 
     %fieldset.all-100
       %button.ink-button.green(ng-click="save()") Save

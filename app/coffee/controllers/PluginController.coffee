@@ -74,15 +74,19 @@ controllers.controller 'PluginController', ['$scope', '$routeParams', '$location
 
     $scope.fileRemoved = (fileId)-> isIn(fileId, 'removed_files')
 
+    $scope.addLink = -> addTo({name: '', url: ''}, 'new_links')
+
+    $scope.removeLink = ($index)-> removeFrom($index, 'new_links', true)
+
     addTo = (value, arr)->
       if typeof $scope.plugin[arr] == 'undefined'
         $scope.plugin[arr] = []
       $scope.plugin[arr].push(value)
 
-    removeFrom = (value, arr)->
+    removeFrom = (value, arr, byIndex)->
       if typeof $scope.plugin[arr] == 'undefined'
         $scope.plugin[arr] = []
-      $scope.plugin[arr] = $scope.plugin[arr].filter (item, index)-> item != value
+      $scope.plugin[arr] = $scope.plugin[arr].filter (item, index)-> if not byIndex then item != value else index != value
 
     isIn = (value, arr)->
       typeof $scope.plugin[arr] != 'undefined' && $scope.plugin[arr].indexOf(value) > -1

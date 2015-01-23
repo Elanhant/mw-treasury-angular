@@ -2,7 +2,7 @@
   #plugins-carousel.ink-carousel(data-autoload=false)
     %ul.stage.column-group.half-gutters.unstyled(style="width: 100%; left: -300%;")
       %li.slide.all-100.mw-plugin-slide(mw-plugins-carousel='' ng-repeat="plugin in plugins")
-        %a(href="#/plugins/plugin.id" title="Go to plugin page")
+        %a(href="#/plugins/{{plugin.id}}" title="Go to plugin page")
           %figure.ink-image.mw-plugin-thumb
             %img(ng-src="{{plugin.imageUrl}}" alt="{{plugin.name}}")
             %figcaption.over-bottom-dark

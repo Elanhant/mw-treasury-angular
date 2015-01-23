@@ -243,3 +243,18 @@ a.no-decoration {
 	background: none;
 	object-fit: cover;
 }
+
+.froala-element {
+	background-color: #fff;
+}
+
+a.no-underline:active,
+a.no-underline:hover {
+	text-decoration: none;
+}
+
+.control.append-label > input+.ink-label {	
+	position: absolute;
+	right: 3px;
+	top: 3px;
+}
