@@ -35,9 +35,9 @@ controllers.controller 'PluginController', ['$scope', '$routeParams', '$location
       fileReader.onloadend = -> $scope.img = fileReader.result
       return fileReader
 
-    $scope.saveImage = (flow)->
+    $scope.saveFile = (flow, imageOnly)->
       if flow  
-        abc = !!{png:1,gif:1,jpg:1,jpeg:1}[flow.files[0].getExtension()]
+        abc = !imageOnly or !!{png:1,gif:1,jpg:1,jpeg:1}[flow.files[0].getExtension()]
         if abc
             fileReader = getFileReader $scope
             file = flow.files[0]
@@ -52,22 +52,40 @@ controllers.controller 'PluginController', ['$scope', '$routeParams', '$location
         $scope.plugin.new_images = []
       $scope.plugin.new_images.push(url: file.name, uid: file.uniqueIdentifier)
 
-    $scope.removeUploaded = (file)->
+    $scope.pluginFlowSuccessFile = (file, message, chunk)->
+      if typeof $scope.plugin.new_files == 'undefined'
+        $scope.plugin.new_files = []
+      $scope.plugin.new_files.push(name: file.name, path: file.name, size: file.size, uid: file.uniqueIdentifier)
+
+    $scope.removeUploaded = (file, isImage)->
       file.cancel()
-      $scope.plugin.new_images = $scope.plugin.new_images.filter (item, index)-> item.uid != file.uniqueIdentifier
+      attr = if isImage then 'new_images' else 'new_files'
+      $scope.plugin[attr] = $scope.plugin[attr].filter (item, index)-> item.uid != file.uniqueIdentifier
 
-    $scope.removeImage = (imageId)->
-      if typeof $scope.plugin.removed_images == 'undefined'
-        $scope.plugin.removed_images = []
-      $scope.plugin.removed_images.push(imageId)
+    $scope.removeImage = (imageId)-> addTo(imageId, 'removed_images')
 
-    $scope.restoreImage = (imageId)->
-      if typeof $scope.plugin.removed_images == 'undefined'
-        $scope.plugin.removed_images = []
-      $scope.plugin.removed_images = $scope.plugin.removed_images.filter (item, index)-> item != imageId
+    $scope.removeFile = (fileId)-> addTo(fileId, 'removed_files');
 
-    $scope.isRemoved = (imageId)->
-      typeof $scope.plugin.removed_images != 'undefined' && $scope.plugin.removed_images.indexOf(imageId) > -1
+    $scope.restoreImage = (imageId)-> removeFrom(imageId, 'removed_images')
+
+    $scope.restoreFile = (fileId)-> removeFrom(fileId, 'removed_files')
+
+    $scope.imageRemoved = (imageId)-> isIn(imageId, 'removed_images')
+
+    $scope.fileRemoved = (fileId)-> isIn(fileId, 'removed_files')
+
+    addTo = (value, arr)->
+      if typeof $scope.plugin[arr] == 'undefined'
+        $scope.plugin[arr] = []
+      $scope.plugin[arr].push(value)
+
+    removeFrom = (value, arr)->
+      if typeof $scope.plugin[arr] == 'undefined'
+        $scope.plugin[arr] = []
+      $scope.plugin[arr] = $scope.plugin[arr].filter (item, index)-> item != value
+
+    isIn = (value, arr)->
+      typeof $scope.plugin[arr] != 'undefined' && $scope.plugin[arr].indexOf(value) > -1
 
     $scope.triggerGallery = (page)->      
       Ink.requireModules ['Ink.Dom.Selector_1', 'Ink.UI.Modal_1', 'Ink.UI.Carousel_1'], (InkSelector, InkModal, InkCarousel)->

@@ -24,7 +24,9 @@
           %strong> {{plugin.author}}
       %p {{plugin.description}}
       %h2 Downloads
-      %table#plugin-files.ink-table.bordered(ng-if="plugin.files")
+      .panel.bottom-space(ng-if="!plugin.files || plugin.files.length == 0")
+        No files available!
+      %table#plugin-files.ink-table.bordered(ng-if="plugin.files.length > 0")
         %thead
           %tr
             %th.align-left File
@@ -38,6 +40,8 @@
               %a.ink-button(href="javascript:void(0)")
                 %i.fa.fa-save
       %h2 Links to other sites
+      .panel.bottom-space(ng-if="!plugin.links || plugin.links.length == 0")
+        No links available!
       %ul#plugin-links.unstyled(ng-if="plugin.links")
         %li(ng-repeat="link in plugin.links")
           %a(href="{{link.url}}" target="_blank") {{link.name}}
