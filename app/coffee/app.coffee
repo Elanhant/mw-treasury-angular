@@ -4,7 +4,8 @@ mwTreasuryApp = angular.module 'mwTreasuryApp', [
 	'mwTreasuryFilters',
 	'mwTreasuryServices',
 	'mwTreasuryDirectives',
-	'flow'
+	'flow',
+  'froala'
 ]
 
 mwTreasuryApp.config ['$routeProvider',
@@ -33,6 +34,10 @@ mwTreasuryApp.config ['flowFactoryProvider', (flowFactoryProvider)->
         testChunks: false
         permanentErrors:[404, 500, 501]
 ]
+
+mwTreasuryApp.value 'froalaConfig', 
+  inlineMode: false
+  placeholder: ''
 
 controllers = angular.module('mwTreasuryControllers', [])
 filters = angular.module('mwTreasuryFilters', ['ngResource'])
