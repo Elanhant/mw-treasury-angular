@@ -13,7 +13,7 @@
         .button-group
           %a.ink-button(href="#/plugins/{{plugin.id}}/edit")
             %span.fa.fa-edit
-          %a.ink-button(href="javascript:void(0)")
+          %a.ink-button(href="javascript:void(0)" ng-click="delete()")
             %span.fa.fa-trash-o
       %a#gallery-modal-trigger(href="javascript:void(0)" ng-click="triggerGallery(0)")
         %figure.ink-image.vertical-space(ng-show="mainImageUrl")
@@ -21,8 +21,9 @@
           %figcaption.dark.over-bottom Some text
       %p#plugin-info
         %blockquote Author: 
-          %strong> {{plugin.author}}
-      %p {{plugin.description}}
+          %strong> 
+            {{plugin.author}}
+      %div(ng-bind-html="plugin.description")
       %h2 Downloads
       .panel.bottom-space(ng-if="!plugin.files || plugin.files.length == 0")
         No files available!
@@ -35,14 +36,14 @@
         %tbody
           %tr(ng-repeat="file in plugin.files")
             %td {{file.name}}
-            %td {{file.size}}
+            %td {{file.size|bytes}}
             %td.align-right
               %a.ink-button(href="javascript:void(0)")
                 %i.fa.fa-save
       %h2 Links to other sites
       .panel.bottom-space(ng-if="!plugin.links || plugin.links.length == 0")
         No links available!
-      %ul#plugin-links.unstyled(ng-if="plugin.links")
+      %ol#plugin-links(ng-if="plugin.links")
         %li(ng-repeat="link in plugin.links")
           %a(href="{{link.url}}" target="_blank") {{link.name}}
       %footer#plugin-footer

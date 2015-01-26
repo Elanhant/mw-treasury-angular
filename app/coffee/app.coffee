@@ -5,13 +5,15 @@ mwTreasuryApp = angular.module 'mwTreasuryApp', [
 	'mwTreasuryServices',
 	'mwTreasuryDirectives',
 	'flow',
+  'ngSanitize',
   'froala'
 ]
 
 mwTreasuryApp.config ['$routeProvider',
 	($routeProvider)->
 		$routeProvider.
-			when('/plugins', templateUrl: 'templates/plugin/index.html', controller: 'PluginsController').
+      when('/plugins', templateUrl: 'templates/plugin/index.html', controller: 'PluginsController').
+			when('/plugins/search/:keyword', templateUrl: 'templates/plugin/search.html', controller: 'PluginsController').
 			when('/plugins/new/:categoryId?', templateUrl: 'templates/plugin/form.html', controller: 'PluginController').
 			when('/plugins/:pluginId', templateUrl: 'templates/plugin/show.html', controller: 'PluginController').
 			when('/plugins/:pluginId/edit', templateUrl: 'templates/plugin/form.html', controller: 'PluginController').
@@ -38,6 +40,7 @@ mwTreasuryApp.config ['flowFactoryProvider', (flowFactoryProvider)->
 mwTreasuryApp.value 'froalaConfig', 
   inlineMode: false
   placeholder: ''
+  minHeight: 300
 
 controllers = angular.module('mwTreasuryControllers', [])
 filters = angular.module('mwTreasuryFilters', ['ngResource'])

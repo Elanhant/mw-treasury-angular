@@ -52,6 +52,11 @@
         %nav.ink-navigation.xlarge-push-right.large-push-right.half-top-space
           %ul.menu.horizontal.black
             %li
+              %form(ng-submit="mainSearch(keyword)")
+                %span.header-search
+                  %input#main-search(name="mainSearch" type="text" ng-model="keyword")
+                  %button.ink-button Search         
+            %li
               %a(href="#/plugins") Main page
             %li
               %a(href="#/categories") Categories

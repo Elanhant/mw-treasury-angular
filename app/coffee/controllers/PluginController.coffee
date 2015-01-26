@@ -30,6 +30,10 @@ controllers.controller 'PluginController', ['$scope', '$routeParams', '$location
         (newPlugin)-> $location.path "/plugins/#{newPlugin.id}",
         (httpResponse)-> $scope.errors = httpResponse.data
 
+    $scope.delete = ->
+      if $scope.plugin.id
+        $scope.plugin.$delete -> $location.path "/plugins/"
+
     getFileReader = ($scope)->
       fileReader = new FileReader()
       fileReader.onloadend = -> $scope.img = fileReader.result

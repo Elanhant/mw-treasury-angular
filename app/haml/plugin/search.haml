@@ -1,0 +1,36 @@
+.column-group.gutters
+  .all-66
+    .bottom-space(ng-repeat="plugin in plugins | filter:byCategories | orderBy:orderProp:orderDir")
+      %a.no-decoration(href="#/plugins/{{plugin.id}}" title="Go to plugin page")
+        %figure.ink-image.mw-plugin-list
+          %img(ng-src="{{plugin.imageUrl}}" alt="{{plugin.name}}")
+          %figcaption.over-bottom.mw-category-toolbar
+            .column-group
+              .all-66
+                %h3.push-left.no-margin-bottom {{plugin.name}}
+              .all-33.push-right.align-right
+                %span.fw-900.large
+                  %i.fa.fa-files-o>
+                  0
+  .all-33
+    %form.ink-form
+      %fieldset
+        %legend Search options
+        .control-group.no-margin
+          %p.label Filter by Categories
+            %ul.control.unstyled.no-margin
+              %li(ng-repeat="cat in categories")
+                %input(type="checkbox" id="cat{{cat.id}}" ng-model="categories_checked[cat.id]")
+                %label(for="cat{{cat.id}}") {{cat.name}}
+        .control-group.no-margin
+          %p.label Sort by           
+            %ul.control.unstyled.no-margin
+              %li(ng-repeat="prop in orderProps")           
+                %input(type="radio" id="order_{{prop.name}}" name="orderProp" value="{{prop.name}}" ng-model="$parent.orderProp")
+                %label(for="order_{{prop.name}}") {{prop.label}}
+        .control-group.no-margin
+          .control
+            %ul.control.unstyled.no-margin
+              %li
+                %input(type="checkbox" id="orderDir" ng-model="orderDir" value="true")
+                %label(for="orderDir") Reversed order?

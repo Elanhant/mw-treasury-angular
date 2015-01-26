@@ -258,3 +258,23 @@ a.no-underline:hover {
 	right: 3px;
 	top: 3px;
 }
+
+.header-search {
+}
+
+.header-search > input {
+	line-height: 1.7;
+	margin-left: 5px;
+	margin-top: 5px;
+	padding-left: 4px;
+}
+
+.header-search > button {
+	margin-bottom: 2px;
+	padding: 6px 12px;
+}
+
+.mw-plugin-list > img {
+	height: 250px;
+	object-fit: cover;
+}
